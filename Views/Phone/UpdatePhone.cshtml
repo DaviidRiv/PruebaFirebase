@@ -1,0 +1,65 @@
+﻿@model PruebaFireBase.Models.PhoneModel
+
+@{
+    ViewData["Title"] = "UpdatePhone";
+}
+
+<div class="card">
+    <h5 class="card-header">Update Phone</h5>
+
+    <p class="card-text">
+        <div class="col-md-12">
+            <form asp-action="PhoneUpdate" asp-controller="Phone" method="post" class="row g-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input name="id" value="@Model.PhoneId" readonly hidden/>
+                <input asp-for="PhoneId" readonly hidden/>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Brand" class="control-label"></label>
+                    <input asp-for="Brand" class="form-control" />
+                    <span asp-validation-for="Brand" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Color" class="control-label"></label>
+                    <input asp-for="Color" class="form-control" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" required />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="UrlImage" class="control-label"></label>
+                    <input asp-for="UrlImage" class="form-control" />
+                    <span asp-validation-for="UrlImage" class="text-danger"></span>
+                </div>
+                <div class="d-flex justify-content-between w-100">
+                    <div>
+                        <a type="button" asp-action="IndexPhone" class="btn btn-outline-secondary">Back to List</a>
+                    </div>
+                    <div class="d-flex justify-content-center flex-grow-1">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </p>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
