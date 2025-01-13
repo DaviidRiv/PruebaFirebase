@@ -45,6 +45,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            
                             <tr>
                                 <td>
                                     @index
@@ -90,11 +91,23 @@
                                             <label class="form-label text-muted">@item.Name</label> |
                                             <label class="form-label text-muted">@item.Brand</label> |
                                             <label class="form-label text-muted">@item.Description</label> <br />
-                                            <label class="form-label text-muted">@item.UrlImage</label>
+                                            @{
+                                                if (item.UrlImage is not null)
+                                                {
+                                                    var urlImagen = @item.UrlImage;
+                                                    if (!urlImagen!.Contains("?raw=1"))
+                                                    {
+                                                        // Si no tiene ?raw=1, agregamos al final
+                                                        urlImagen += urlImagen.Contains("?") ? "&raw=1" : "?raw=1";
+                                                    }
+                                                    <label class="form-label text-muted"><img src="@urlImagen" alt="Imagen del Teléfono" style="max-width: 100px;" /></label>
+                                                }
+
+                                            }
                                         </div>
                                         <div class="modal-footer d-flex justify-content-between w-100">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            <a asp-action="DeletePhone" asp-route-id="@item.PhoneId" type="button" class="btn btn-danger">Delete</a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,4 +1,6 @@
-﻿namespace PruebaFireBase.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PruebaFireBase.Models
 {
     public class PhoneModel
     {
@@ -9,5 +11,7 @@
         public string? Color { get; set; }
         public string? Description { get; set; }
         public string? UrlImage { get; set; }
+        public string? ImagePath { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }
